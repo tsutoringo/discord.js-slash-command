@@ -1,0 +1,4 @@
+/.env
+/.nvm
+/node_modules
+/test.js
