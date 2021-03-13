@@ -18,7 +18,7 @@ module.exports = function (client) {
 	client.ws.on('INTERACTION_CREATE', async interaction => {
 		client.channels.fetch(interaction.channel_id).then(channel => {
 			interaction.member = new Discord.GuildMember(client, interaction.member, channel.guild);
-			interaction = channel;
+			interaction.channel = channel;
 			client.emit('interactionCreate', interaction);
 		});
 	});
