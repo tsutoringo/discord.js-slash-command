@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Client = Discord.Client;
-const Constants = require('./Constants');
+const {APPLICATION_COMMAND_OPTION_TYPE : types} = require('./Constants');
 
 Client.prototype.registerCommand = function (data) {
 	return this.api.applications(this.user.id).commands.post({data});
@@ -22,9 +22,9 @@ module.exports = function (client) {
 			if (interaction.data.options) {
 				for (const i in interaction.data.options) {
 					const option = interaction.data.options[i];
-					if (option.type === Constants.USER) option.value = await client.users.fetch(option.value);
-					else if (option.type === Constants.CHANNEL) option.value = await client.channels.fetch(option.value);
-					else if (option.type === Constants.ROLE) option.value = await channel.guild.roles.fetch(option.value);
+					if (option.type === types.USER) option.value = await client.users.fetch(option.value);
+					else if (option.type === types.CHANNEL) option.value = await client.channels.fetch(option.value);
+					else if (option.type === types.ROLE) option.value = await channel.guild.roles.fetch(option.value);
 				}
 			}
 			client.emit('interactionCreate', interaction);
